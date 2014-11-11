@@ -57,30 +57,23 @@ public class FreeMarkerUtils {
 
 	public static void outMapper(ModelClassDesc modelClassDesc)
 			throws IOException, TemplateException {
-		Template temp = config.getTemplate("mapper.ftl");
-		String path = modelClassDesc.getPackgeName().replace(".", "/")
-				+ "/model/mapper/";
-		File dir = new File(FreeMarkerUtils.class.getResource("/").getPath()
-				+ "/src/" + path);
-		if (!dir.exists()) {
-			dir.mkdirs();
+		String mapperName = "mapper.ftl";
+		String srcPath = FreeMarkerUtils.class.getResource("/").getPath().split("bin")[0]+"src/";
+		System.out.println("srcPath:"+srcPath);
+		String packagePath = srcPath + modelClassDesc.getPackgeName().replace(".", "/")+"/model/mapper/";
+		System.out.println("packagePath:"+packagePath);
+		File packageFile = new File(packagePath);
+		if(!packageFile.exists()){
+			packageFile.mkdirs();
 		}
-		File file = new File(FreeMarkerUtils.class.getResource("/").getPath()
-				+ "/src/" + path + modelClassDesc.getClassName() + "Mapper.xml");
-		if(file.exists()){
-			file.delete();
-		}
-		file.createNewFile();
-		FileWriter fw = new FileWriter(file);
+		String filePath = packagePath+modelClassDesc.getClassName()+"Mapper.xml";
 		Map<String, Object> root = new HashMap<String, Object>();
 		root.put("modelClassDesc", modelClassDesc);
-		temp.process(root, fw);
-		temp.process(root, new OutputStreamWriter(System.out));
-		fw.flush();
-		fw.close();
+		outMapper(filePath,root, mapperName);
 	}
 	
-	public static void outMapper(String filePath,Map<String, Object> root , String tempName,Template temp) throws IOException, TemplateException{
+	public static void outMapper(String filePath,Map<String, Object> root , String tempName) throws IOException, TemplateException{
+		Template temp = config.getTemplate(tempName);
 		File outFile = new File(filePath);
 		if(outFile.exists()){
 			outFile.delete();
@@ -102,9 +95,24 @@ public class FreeMarkerUtils {
 		System.out.println("srcPath:"+srcPath);
 		String packagePath = srcPath + modelClassDesc.getPackgeName().replace(".", "/");
 		System.out.println("packagePath:"+packagePath);
+		File packagePathFile = new File(packagePath);
+		if(packagePathFile.exists()){
+			packagePathFile.mkdirs();
+		}
+		String modelName = modelClassDesc.getClassName()+".java";
+		String mapperName = modelClassDesc.getClassName()+"mapper.xml";
+		String daoName = modelClassDesc.getClassName()+"DaoImpl.java";
+		File modelJava = new File(packagePath+"/model/"+modelName);
+		File mapperFile = new File(packagePath+"/model/mapper/"+mapperName);
+//		File
 		
 	}
 
+	public static void outCode(String tempName,String outName,ModelClassDesc modelClassDesc) throws IOException{
+		Map<String, Object> root = new HashMap<String, Object>();
+		root.put("modelClassDesc", modelClassDesc);
+//		outMapper(filePath, root, tempName);
+	}
 	
 	
 

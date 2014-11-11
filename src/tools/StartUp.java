@@ -37,7 +37,7 @@ public class StartUp {
 				mcd.setPackgeName(packeName);
 				mcd.format();
 //				FreeMarkerUtils.outModel(mcd);
-//				FreeMarkerUtils.outMapper(mcd);
+				FreeMarkerUtils.outMapper(mcd);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

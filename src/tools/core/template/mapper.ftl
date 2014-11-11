@@ -91,7 +91,6 @@
 		</#list> 
 		where <include refid="conditionOnlyId"/>
 	</update>
-
 	<delete id="deleteByIds" parameterType="list">
 		delete from <include refid="tableNameSql"/> 
 		where id in <foreach index="index" item="item" collection="array" separator="," open="(" close=")" >${r"#{item}"}</foreach>
