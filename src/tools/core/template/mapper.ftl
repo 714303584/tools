@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="${modelClassDesc.packgeName}.dao.${modelClassDesc.className}Dao">
+<mapper namespace="${modelClassDesc.packgeName}.dao.${modelClassDesc.className}DaoImpl">
 	<resultMap id="gGoodsResultMap" type="${modelClassDesc.className}">
 		<#list modelClassDesc.fileds as filed> 
 			<result column="${filed.tableFiledName}" property="${filed.filedName}" />

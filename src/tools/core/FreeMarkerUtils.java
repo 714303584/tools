@@ -78,18 +78,37 @@ public class FreeMarkerUtils {
 		temp.process(root, new OutputStreamWriter(System.out));
 		fw.flush();
 		fw.close();
-
+	}
+	
+	public static void outMapper(String filePath,Map<String, Object> root , String tempName,Template temp) throws IOException, TemplateException{
+		File outFile = new File(filePath);
+		if(outFile.exists()){
+			outFile.delete();
+		}
+		outFile.createNewFile();
+		FileWriter out = new FileWriter(outFile);
+		temp.process(root, out);
+		temp.process(root, new OutputStreamWriter(System.out));
+		out.flush();
+		out.close();
+	}
+	
+	
+	public static void outCode(ModelClassDesc modelClassDesc) throws IOException{
+		Template mapperTemp = config.getTemplate("mapper.ftl");
+		Template modelTemp = config.getTemplate("model.ftl");
+		Template daoTemp = config.getTemplate("dao.ftl");
+		String srcPath = FreeMarkerUtils.class.getResource("/").getPath().split("bin")[0]+"src/";
+		System.out.println("srcPath:"+srcPath);
+		String packagePath = srcPath + modelClassDesc.getPackgeName().replace(".", "/");
+		System.out.println("packagePath:"+packagePath);
+		
 	}
 
-	public static void main(String[] args) {
+	
+	
 
-		File file = new File("C:/aa");
-		try {
-			file.mkdirs();
-		} catch (Exception e) {
-			// TODO 自动生成的 catch 块
-			e.printStackTrace();
-		}
+	public static void main(String[] args) {
 	}
 
 }
