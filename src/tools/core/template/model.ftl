@@ -15,6 +15,19 @@ public class ${modelClassDesc.className} implements Serializable {
 			private  ${filed.filedType} ${filed.filedName};
 		</#list> 
 		
+		public ${modelClassDesc.className}() {
+
+		}
+		
+		
+		public ${modelClassDesc.className}(${modelClassDesc.classFieldString} ) {
+				super();
+			<#list modelClassDesc.fileds as filed> 
+			 this.${filed.filedName} = ${filed.filedName};
+			</#list>
+		}
+		
+		
 		<#list modelClassDesc.fileds as filed> 
 				public  ${filed.filedType}  get${filed.filedName}() {
 					return ${filed.filedName};

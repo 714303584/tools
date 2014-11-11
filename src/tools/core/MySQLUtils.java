@@ -55,7 +55,6 @@ public class MySQLUtils {
 		return result;
 	}
 	
-	
 	public static String getClassName(String value){
 		String fileds[] = value.split("_");
 		StringBuffer sb = new StringBuffer();

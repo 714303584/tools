@@ -35,9 +35,9 @@ public class StartUp {
 				mcd.setTableName(tableName);
 				mcds.add(mcd);
 				mcd.setPackgeName(packeName);
-				System.out.println(mcd);
-				FreeMarkerUtils.outModel(mcd);
-				FreeMarkerUtils.outMapper(mcd);
+				mcd.format();
+//				FreeMarkerUtils.outModel(mcd);
+//				FreeMarkerUtils.outMapper(mcd);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

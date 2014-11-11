@@ -13,6 +13,10 @@ public class ModelClassDesc {
 	
 	private List<ModelFiledDesc>  fileds = new ArrayList<ModelFiledDesc>();
 	
+	private String classFieldString;
+	
+	private String tableFieldString;
+	
 	public String getTableName() {
 		return tableName;
 	}
@@ -45,6 +49,42 @@ public class ModelClassDesc {
 		this.fileds = fileds;
 	}
 
+	public String getClassFieldString() {
+		return classFieldString;
+	}
+
+	public void setClassFieldString(String classFieldString) {
+		this.classFieldString = classFieldString;
+	}
+
+	public String getTableFieldString() {
+		return tableFieldString;
+	}
+
+	public void setTableFieldString(String tableFieldString) {
+		this.tableFieldString = tableFieldString;
+	}
+
+	public void format(){
+		StringBuilder sbClass = new StringBuilder();
+		StringBuilder sbTable = new StringBuilder();
+		int endPosition = fileds.size()-1;
+		for (int i = 0; i < fileds.size(); i++) {
+			ModelFiledDesc mfd = fileds.get(i);
+			if(i < endPosition){
+				sbClass.append(mfd.getFiledType()+" "+mfd.getFiledName()+", ");
+				sbTable.append(mfd.getTableFiledName()+", ");
+			}else{
+				sbClass.append(mfd.getFiledType()+" "+mfd.getFiledName()+" ");
+				sbTable.append(mfd.getTableFiledName()+" ");
+			}
+		}
+		classFieldString = sbClass.toString();
+		tableFieldString = sbTable.toString();
+		System.out.println(classFieldString);
+		System.out.println(tableFieldString);
+	}
+	
 	@Override
 	public String toString() {
 		return "ModelClassDesc [packgeName=" + packgeName + ", className="

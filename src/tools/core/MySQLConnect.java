@@ -43,7 +43,6 @@ public class MySQLConnect {
 		List<TableColumnDesc> result = new ArrayList<TableColumnDesc>();
 		Statement stt = con.createStatement();
 		ResultSet rs =  stt.executeQuery(sql);
-		System.out.println("*****************************"+sql+"****************************************");
 		while (rs.next()) {
 			TableColumnDesc tcd = new TableColumnDesc();
 			tcd.setField(rs.getString("FIELD"));

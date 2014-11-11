@@ -14,9 +14,7 @@
 
 	<!-- 用于select查询、insert的公用抽取的列 -->
 	<sql id="commonSelectColumnsPrefix">
-			<#list modelClassDesc.fileds as filed> 
-				${filed.tableFiledName},
-			</#list> 
+			${modelClassDesc.tableFieldString}
 	</sql>
 	<!-- 按主键查找条件语句 -->
 	<sql id="conditionOnlyId">
